@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public float reverseSpeed;
     public float acceleration;
     public float decceleration;
+    public float gravity;
 
     public float wheelSpeed;
     public float handling;
@@ -55,7 +56,7 @@ public class Movement : MonoBehaviour
 
         
         Vector3 force = transform.forward * currentSpeed;
-
+        force.y = -gravity;
         rb.AddForce(force);
 
 
