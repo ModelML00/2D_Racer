@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
             if(brakeLights.activeInHierarchy) {
                 brakeLights.SetActive(false);
             }
-            if(reverseLights.activeInHierarchy) {
+            if(reverseLights != null && reverseLights.activeInHierarchy) {
                 reverseLights.SetActive(false);
             }
         }
@@ -79,12 +79,12 @@ public class Movement : MonoBehaviour
             if(brakeLights.activeInHierarchy) {
                 brakeLights.SetActive(false);
             }
-            if(reverseLights.activeInHierarchy) {
+            if(reverseLights != null && reverseLights.activeInHierarchy) {
                 reverseLights.SetActive(false);
             }
         }
-
-        if(currentSpeed < 0f && !reverseLights.activeInHierarchy) {
+        
+        if(reverseLights != null && currentSpeed < 0f && !reverseLights.activeInHierarchy) {
             reverseLights.SetActive(true);
         }
         

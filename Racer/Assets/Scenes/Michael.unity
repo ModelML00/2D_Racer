@@ -672,12 +672,12 @@ PrefabInstance:
     - target: {fileID: 6691988181647138421, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
       propertyPath: decceleration
-      value: 75
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6691988181647138421, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
       propertyPath: acceleration
-      value: 35
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6691988181647138421, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
@@ -687,7 +687,7 @@ PrefabInstance:
     - target: {fileID: 6691988181647138421, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
       propertyPath: topSpeed
-      value: 250
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6965073368596054029, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
@@ -727,12 +727,22 @@ PrefabInstance:
     - target: {fileID: 8196948749365346410, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
       propertyPath: m_AngularDrag
-      value: 5
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8196948749365346410, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196948749365346410, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196948749365346410, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 8578423022895464864, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
         type: 3}
