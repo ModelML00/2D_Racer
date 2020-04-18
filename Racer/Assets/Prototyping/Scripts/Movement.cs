@@ -38,6 +38,8 @@ public class Movement : MonoBehaviour
     bool grounded;
     Vector3 normal;
 
+    public static float speed;
+
     private void Start() {
         brakeLights.SetActive(false);
         reverseLights.SetActive(false);
@@ -101,6 +103,8 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        speed = Vector3.Dot(rb.velocity, transform.forward);
+        speed = speed >= 0f ? speed : speed * -1f;
         
         Vector3 force = transform.forward * currentSpeed;
 
