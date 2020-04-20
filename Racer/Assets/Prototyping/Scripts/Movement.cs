@@ -39,6 +39,7 @@ public class Movement : MonoBehaviour
     Vector3 normal;
 
     public static float speed;
+    public static float speedometerSpeed;
 
     private void Start() {
         brakeLights.SetActive(false);
@@ -105,6 +106,8 @@ public class Movement : MonoBehaviour
     {
         speed = Vector3.Dot(rb.velocity, transform.forward);
         speed = speed >= 0f ? speed : speed * -1f;
+
+        speedometerSpeed = speed / topSpeed;
         
         Vector3 force = transform.forward * currentSpeed;
 

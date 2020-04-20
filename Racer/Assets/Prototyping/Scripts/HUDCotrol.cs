@@ -9,6 +9,8 @@ public class HUDCotrol : MonoBehaviour
 
     public Text speedometer;
 
+    public Transform speedometerHand;
+
     float currentTime;
 
     float minutes;
@@ -24,6 +26,8 @@ public class HUDCotrol : MonoBehaviour
 
         timer.text = minutes.ToString("00") + " : " + currentTime.ToString("00.00");
         speedometer.text = Movement.speed.ToString("000");
+
+        speedometerHand.rotation = Quaternion.Euler(0f, 0f, -90f * Movement.speedometerSpeed);
     }
 
     float SaveTime() {
