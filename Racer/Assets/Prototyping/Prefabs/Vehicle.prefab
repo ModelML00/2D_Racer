@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topSpeed: 50
-  acceleration: 60
+  acceleration: 15
   decceleration: 80
   brakePower: 15
   wheelSpeed: 30
