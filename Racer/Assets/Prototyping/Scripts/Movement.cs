@@ -19,7 +19,8 @@ public class Movement : MonoBehaviour
     public GameObject brakeLights;
     public GameObject reverseLights;
 
-    //public Animator tires;
+    public Animator lTire;
+    public Animator rTire;
 
     Rigidbody rb;
     Transform vehicleBody;
@@ -36,6 +37,7 @@ public class Movement : MonoBehaviour
     float rotationVel;
 
     bool grounded;
+    bool smoke;
     Vector3 normal;
 
     public static float speed;
@@ -60,6 +62,13 @@ public class Movement : MonoBehaviour
             if(reverseLights != null && reverseLights.activeInHierarchy) {
                 reverseLights.SetActive(false);
             }
+            if(!smoke) {
+                lTire.gameObject.SetActive(true);
+                rTire.gameObject.SetActive(true);
+                lTire.SetTrigger("Smoke");
+                rTire.SetTrigger("Smoke");
+                smoke = true;
+            }
         }
         if(!Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftControl)) {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, -reverseSpeed, ref brakeVel, (brakePower * 10f) * Time.deltaTime);
@@ -68,12 +77,14 @@ public class Movement : MonoBehaviour
             } else if(currentSpeed < 0f) {
                 brakeLights.SetActive(false);
             }
+            smoke = false;
         }
         if(Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftControl)){
             currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref brakeVel, (brakePower * 10f) * Time.deltaTime);
             if(!brakeLights.activeInHierarchy) {
                 brakeLights.SetActive(true);
             }
+            smoke = false;
         }
         if(!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl)) {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref decelVel, (decceleration * 10f) * Time.deltaTime);
@@ -83,6 +94,7 @@ public class Movement : MonoBehaviour
             if(reverseLights != null && reverseLights.activeInHierarchy) {
                 reverseLights.SetActive(false);
             }
+            smoke = false;
         }
         
         if(reverseLights != null && currentSpeed < 0f && !reverseLights.activeInHierarchy) {
