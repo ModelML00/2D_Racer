@@ -19,8 +19,8 @@ public class Movement : MonoBehaviour
     public GameObject brakeLights;
     public GameObject reverseLights;
 
-    public Animator lTire;
-    public Animator rTire;
+    public GameObject lTire;
+    public GameObject rTire;
 
     Rigidbody rb;
     Transform vehicleBody;
@@ -63,10 +63,8 @@ public class Movement : MonoBehaviour
                 reverseLights.SetActive(false);
             }
             if(!smoke) {
-                lTire.gameObject.SetActive(true);
-                rTire.gameObject.SetActive(true);
-                lTire.SetTrigger("Smoke");
-                rTire.SetTrigger("Smoke");
+                lTire.SetActive(true);
+                rTire.SetActive(true);
                 smoke = true;
             }
         }

@@ -1197,6 +1197,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle
       objectReference: {fileID: 0}
+    - target: {fileID: 6691988181647138421, guid: 1b7539a39786bee4b93b1b0b5d18e7ec,
+        type: 3}
+      propertyPath: acceleration
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b7539a39786bee4b93b1b0b5d18e7ec, type: 3}
 --- !u!4 &1223141167 stripped
