@@ -11,14 +11,18 @@ public class HUDCotrol : MonoBehaviour
 
     public Transform speedometerHand;
 
-    float currentTime;
+    [HideInInspector] public float currentTime;
 
-    float minutes;
+    [HideInInspector] public float minutes;
+
+    [HideInInspector] public bool trackTime = true;
 
     // Update is called once per frame
     void Update()
     {
-        currentTime += Time.deltaTime;
+        if(trackTime) {
+            currentTime += Time.deltaTime;
+        }
         if(currentTime >= 60f) {
             currentTime = 0f;
             minutes++;
@@ -30,8 +34,4 @@ public class HUDCotrol : MonoBehaviour
         speedometerHand.rotation = Quaternion.Euler(0f, 0f, -90f * Movement.speedometerSpeed);
     }
 
-    float SaveTime() {
-        float timeToSave = minutes * 60f + currentTime;
-        return timeToSave;
-    }
 }

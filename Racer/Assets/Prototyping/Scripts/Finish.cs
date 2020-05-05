@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
+    public FinishUI finishController;
+
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
-            SceneManager.LoadScene(0);
+            finishController.StartCoroutine(finishController.FinishSequence());
         }
     }
 }
