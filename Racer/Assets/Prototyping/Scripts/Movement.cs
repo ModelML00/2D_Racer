@@ -22,6 +22,9 @@ public class Movement : MonoBehaviour
     public GameObject lTire;
     public GameObject rTire;
 
+    public GameObject lExhaust;
+    public GameObject rExhaust;
+
     Rigidbody rb;
     Transform vehicleBody;
     LayerMask whatIsGround;
@@ -37,6 +40,7 @@ public class Movement : MonoBehaviour
     float rotationVel;
 
     bool grounded;
+    bool rampAhead;
     bool smoke;
     Vector3 normal;
 
@@ -67,6 +71,8 @@ public class Movement : MonoBehaviour
                 rTire.SetActive(true);
                 smoke = true;
             }
+            lExhaust.SetActive(false);
+            rExhaust.SetActive(false);
         }
         if(!Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftControl)) {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, -reverseSpeed, ref brakeVel, (brakePower * 10f) * Time.deltaTime);
@@ -76,6 +82,8 @@ public class Movement : MonoBehaviour
                 brakeLights.SetActive(false);
             }
             smoke = false;
+            lExhaust.SetActive(true);
+            rExhaust.SetActive(true);
         }
         if(Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftControl)){
             currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref brakeVel, (brakePower * 10f) * Time.deltaTime);
@@ -83,6 +91,8 @@ public class Movement : MonoBehaviour
                 brakeLights.SetActive(true);
             }
             smoke = false;
+            lExhaust.SetActive(true);
+            rExhaust.SetActive(true);
         }
         if(!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl)) {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, 0f, ref decelVel, (decceleration * 10f) * Time.deltaTime);
@@ -93,6 +103,8 @@ public class Movement : MonoBehaviour
                 reverseLights.SetActive(false);
             }
             smoke = false;
+            lExhaust.SetActive(true);
+            rExhaust.SetActive(true);
         }
         
         if(reverseLights != null && currentSpeed < 0f && !reverseLights.activeInHierarchy) {
@@ -143,14 +155,21 @@ public class Movement : MonoBehaviour
 
         
 
-        Ray ray = new Ray(vehicleBody.transform.position, -vehicleBody.up);
+        Ray rayDown = new Ray(vehicleBody.transform.position, -vehicleBody.up);
+        Ray rayForward = new Ray(vehicleBody.transform.position, vehicleBody.forward);
 
-        RaycastHit hit;
+        RaycastHit hitDown;
 
-        grounded = Physics.Raycast(ray, out hit, 1f, whatIsGround);
+        grounded = Physics.Raycast(rayDown, out hitDown, 1f, whatIsGround);
+        rampAhead = Physics.Raycast(rayForward, 1.5f, whatIsGround);
+
+        if(rampAhead) {
+            rb.AddForce(Vector3.up * 10f);
+            Debug.Log("Hit");
+        }
 
         if(grounded) {
-            normal = hit.normal.normalized;
+            normal = hitDown.normal.normalized;
         }
 
         Vector3 project = Vector3.ProjectOnPlane(vehicleBody.forward, normal);
